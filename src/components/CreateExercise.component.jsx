@@ -18,23 +18,21 @@ export default function CreateExercise() {
       duration: duration,
       date: date
     }
+    console.log(data)
     Axios.post("http://localhost:5000/exercises/add", data)
       .then(res => console.log(res.data))
   }
 
   useEffect(() => {
     //Set test data
-    // setUserName('test-user');
-    // setUsers(['test-user', 'garbage']);
 
-    //Get and set the usernames from server
-    let userNameList = [];
+    //Get and set the users from server
     Axios.get("http://localhost:5000/users").then(res => {
-      res.data.forEach((user) => {
-        userNameList.push(user.username);
+      res.data.map((user) => {
+        setUsers(prevState => [...prevState, user.username]);
       })
-    }).then(() => setUsers(userNameList));
-
+      setUserName(res.data[0].username);
+    })
   }, []);
 
   const userInput = useRef(null);
@@ -95,6 +93,7 @@ export default function CreateExercise() {
           <DatePicker
             selected={date}
             onChange={setDate}
+            className="form-control"
           />
         </div>
 
