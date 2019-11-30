@@ -39,6 +39,7 @@ export default function CreateExercise() {
             ref={userInput}
             required={true}
             value={userName}
+            className="form-control"
             onChange={(e) => {
               setUserName(e.target.value)
             }
@@ -57,6 +58,7 @@ export default function CreateExercise() {
         <div className="form-group">
           <label>Description: </label>
           <input
+            className="form-control"
             type="text"
             name="description"
             id="form-text-description"
@@ -68,6 +70,7 @@ export default function CreateExercise() {
         <div className="form-group">
           <label>Duration: </label>
           <input
+            className="form-control"
             type="number"
             name="description"
             id="form-text-duration"
@@ -86,7 +89,7 @@ export default function CreateExercise() {
         </div>
 
         <div className="form-group">
-          <button type="submit" className="btn btn-primary">Submit shit</button>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </div>
 
       </form>
