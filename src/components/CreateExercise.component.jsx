@@ -24,8 +24,6 @@ export default function CreateExercise() {
   }
 
   useEffect(() => {
-    //Set test data
-
     //Get and set the users from server
     Axios.get("http://localhost:5000/users").then(res => {
       res.data.map((user) => {
