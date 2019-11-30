@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Axios from 'axios'
 
 export default function CreateUser() {
 
@@ -10,10 +11,18 @@ export default function CreateUser() {
     const data = {
       username: userName
     }
-    console.log(data);
+
+    //Axios post request to server
+    Axios.post("http://localhost:5000/users/add", data)
+      .then(res => {
+        console.log(res.data)
+      })
+
     setUserName("")
   }
-  
+
+
+
   return (
     <div>
       <h3>Create New User</h3>
