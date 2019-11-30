@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
-export default function CreateExercise() {
+export default function CreateExercise(props) {
 
   const [userName, setUserName] = useState('');
   const [description, setDescription] = useState('');
@@ -20,18 +20,16 @@ export default function CreateExercise() {
       date: date
     }
     console.log(data)
-    Axios.post("http://localhost:5000/exercises/update/"+id, data)
+    Axios.post("http://localhost:5000/exercises/update/"+ props.match.params.id, data)
       .then(res => console.log(res.data))
+
+    window.location = "/"
   }
 
   useEffect(() => {
+    console.log(props)
 
-    //Pluck the ID out of the URL and store to state
-    let url = window.location.pathname;
-    let idParam = url.substring(url.lastIndexOf('/') + 1);
-    setId(idParam);
-
-    Axios.get("http://localhost:5000/exercises/" + idParam).then(res => {
+    Axios.get("http://localhost:5000/exercises/" + props.match.params.id).then(res => {
       
       let date = new Date(res.data.date);
       setUserName(res.data.username);
